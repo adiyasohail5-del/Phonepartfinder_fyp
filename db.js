@@ -1,5 +1,17 @@
-module.exports = {
-  connect: async () => {
-    console.log('Database connection is not configured yet.');
-  }
+const mysql = require('mysql2/promise');
+require('dotenv').config();
+
+const poolConfig = {
+  host: process.env.DB_HOST || '127.0.0.1',
+  port: parseInt(process.env.DB_PORT || '3306', 10),
+  user: process.env.DB_USER || 'admin',
+  password: process.env.DB_PASSWORD || 'YourStrongPassword',
+  database: process.env.DB_NAME || 'phonepartsfinder',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 };
+
+const pool = mysql.createPool(poolConfig);
+
+module.exports = pool;
