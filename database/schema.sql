@@ -1,0 +1,1 @@
+-- PhonePartFinder database schema placeholder.
